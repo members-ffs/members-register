@@ -12,7 +12,7 @@
             --bg-light: #f8f9fa; --gray-light: #e9ecef; --upload-bg: #f0f7f2; --upload-hover: #d8f0e1; 
         }
         body { margin: 0; background-color: #ffffff; } 
-        .reg-container { max-width: 800px; margin: 20px auto; font-family: 'Sarabun', sans-serif; color: #333; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .reg-container { max-width: 800px; margin: 20px auto; font-family: 'Sarabun', sans-serif; color: #333; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; position: relative; }
         
         /* CSS Progress Bar และ ฟอร์ม */
         .progress-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; position: relative; }
@@ -512,6 +512,7 @@
 </div>
 
 <script>
+    window.Swal = Swal.mixin({ target: '.reg-container' });
     // 🌟 1. นำ URL ของ Web App จาก Google Apps Script (ที่ลงท้ายด้วย /exec) มาใส่ตรงนี้ 🌟
     const API_URL = "https://script.google.com/macros/s/AKfycbwEwZrnBCJMLdkrkckrOIfMVh7CwN0vvg-h7zKfq3NLI-u9Uvf_VKkiTx5DdXLSZ1r1/exec"; 
 
