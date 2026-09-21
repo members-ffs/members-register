@@ -525,14 +525,13 @@
 
     const REGISTRATION_OPEN = false;
 
-    const CLOSED_TITLE = 'ปิดรับสมัครสมาชิกชั่วคราว';
-    const CLOSED_TEXT = 'ขออภัยในความไม่สะดวก โปรดติดตามประกาศการเปิดรับสมัครอีกครั้งจากสมาคม';
+    const CLOSED_TITLE = 'This site is under construction';
     
     window.Swal = Swal.mixin({ target: '.reg-container' });
     // 🌟 1. นำ URL ของ Web App จาก Google Apps Script (ที่ลงท้ายด้วย /exec) มาใส่ตรงนี้ 🌟
     const API_URL = "https://script.google.com/macros/s/AKfycbwEwZrnBCJMLdkrkckrOIfMVh7CwN0vvg-h7zKfq3NLI-u9Uvf_VKkiTx5DdXLSZ1r1/exec"; 
     
-    function showRegistrationClosed(message) {
+    function showRegistrationClosed() {
         document.documentElement.classList.add('reg-closed');
 
         let box = document.getElementById('registerClosed');
@@ -540,18 +539,16 @@
             box = document.createElement('div');
             box.id = 'registerClosed';
             box.className = 'closed-notice';
-            box.innerHTML = '<div style="font-size:45px;">🔒</div><h3></h3><p></p>';
-            box.querySelector('h3').innerText = CLOSED_TITLE;
+            box.innerText = CLOSED_TEXT;
             document.getElementById('registerPage').prepend(box);
         }
-        box.querySelector('p').innerText = message || CLOSED_TEXT;
         window.scrollTo(0, 0);
     }
 
     // ทำงานอัตโนมัติเมื่อเปิดหน้าเว็บ
     if (!REGISTRATION_OPEN) {
         document.documentElement.classList.add('reg-closed'); // ซ่อนฟอร์มทันที ไม่ให้แวบ
-        document.addEventListener('DOMContentLoaded', function () { showRegistrationClosed(); });
+        document.addEventListener('DOMContentLoaded', showRegistrationClosed);
     }
 
 
