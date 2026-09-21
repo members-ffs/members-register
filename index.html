@@ -91,9 +91,7 @@
             background-color: #c82333; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220,53,69,0.3); color: white;
         }
         
-        .closed-notice { text-align: center; padding: 40px 20px; background: #fff8e1; border-left: 5px solid #ffca28; border-radius: 8px; font-family: 'Sarabun', sans-serif; }
-        .closed-notice h3 { color: var(--primary-color); margin: 10px 0; font-size: 22px; }
-        .closed-notice p { color: #555; line-height: 1.7; margin: 0; }
+        .closed-notice { text-align: center; padding: 50px 20px; background: #fff8e1; border-left: 5px solid #ffca28; border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 22px; font-weight: bold; color: var(--primary-color); }
     
         /* โหมดปิดรับสมัคร: ซ่อนฟอร์มทั้งหมด */
         html.reg-closed #registerPage .step-section,
@@ -525,7 +523,7 @@
 
     const REGISTRATION_OPEN = false;
 
-    const CLOSED_TITLE = 'This site is under construction';
+    const CLOSED_TEXT = 'This site is under construction';
     
     window.Swal = Swal.mixin({ target: '.reg-container' });
     // 🌟 1. นำ URL ของ Web App จาก Google Apps Script (ที่ลงท้ายด้วย /exec) มาใส่ตรงนี้ 🌟
