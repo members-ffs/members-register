@@ -90,13 +90,6 @@
         .support-btn:hover {
             background-color: #c82333; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220,53,69,0.3); color: white;
         }
-        
-        .closed-notice { text-align: center; padding: 50px 20px; background: #fff8e1; border-left: 5px solid #ffca28; border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 22px; font-weight: bold; color: var(--primary-color); }
-    
-        /* โหมดปิดรับสมัคร: ซ่อนฟอร์มทั้งหมด */
-        html.reg-closed #registerPage .step-section,
-        html.reg-closed #progressBar { display: none !important; }
-        
     </style>
 </head>
 <body>
@@ -520,35 +513,9 @@
 </div>
 
 <script>
-
-    const REGISTRATION_OPEN = false;
-
-    const CLOSED_TEXT = 'This site is under construction';
-    
     window.Swal = Swal.mixin({ target: '.reg-container' });
     // 🌟 1. นำ URL ของ Web App จาก Google Apps Script (ที่ลงท้ายด้วย /exec) มาใส่ตรงนี้ 🌟
     const API_URL = "https://script.google.com/macros/s/AKfycbwEwZrnBCJMLdkrkckrOIfMVh7CwN0vvg-h7zKfq3NLI-u9Uvf_VKkiTx5DdXLSZ1r1/exec"; 
-    
-    function showRegistrationClosed() {
-        document.documentElement.classList.add('reg-closed');
-
-        let box = document.getElementById('registerClosed');
-        if (!box) {
-            box = document.createElement('div');
-            box.id = 'registerClosed';
-            box.className = 'closed-notice';
-            box.innerText = 'This site is under construction';
-            document.getElementById('registerPage').prepend(box);
-        }
-        window.scrollTo(0, 0);
-    }
-
-    // ทำงานอัตโนมัติเมื่อเปิดหน้าเว็บ
-    if (!REGISTRATION_OPEN) {
-        document.documentElement.classList.add('reg-closed');
-        document.addEventListener('DOMContentLoaded', showRegistrationClosed);
-    }
-
 
     function switchMainTab(pageId, tabId) {
         document.getElementById('registerPage').classList.remove('active');
@@ -700,8 +667,6 @@
                     qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(result.name);
                     qrImg.style.display = 'inline-block';
                     window.scrollTo(0,0);
-                } else if (result.status === 'closed') {
-                    showRegistrationClosed(result.message);
                 } else Swal.fire('Error', result.message, 'error');
             })
             .catch(e => { Swal.close(); Swal.fire('Error', 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error'); });
